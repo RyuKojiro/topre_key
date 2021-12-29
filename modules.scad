@@ -5,6 +5,9 @@ bottom_base_length = KEY_DIMENSIONS[2];
 bottom_base_width = KEY_DIMENSIONS[3] - KEY_DIMENSIONS[1] + KEY_DIMENSIONS[1] * KEY_SIZE;
 bottom_base_angle_back = KEY_DIMENSIONS[4];
 
+// To eliminate z-fighting
+padding = 0.1;
+
 // Functions used to calculate dimensions of the cylindrical dish
 function sagitta(radius, chord) = radius - pow(pow(radius, 2) - pow(chord/2, 2), 0.5);
 function central_chord(chord, sagitta) = pow(chord/2, 2)/sagitta;
@@ -85,7 +88,7 @@ module key(row, symbol_number) {
 
 				translate([KEY_THICKNESS, KEY_THICKNESS, 0])
 				scale(key_scale)
-					key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius);
+					key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=padding);
 
 
 			}
