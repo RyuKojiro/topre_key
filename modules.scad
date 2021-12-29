@@ -28,9 +28,12 @@ module dish_cylinder(top_base_rotated_length, rotated_cylinder_translate, cylind
 }
 
 // Basic key shape
-module key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius) {
+module key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=0) {
 	difference() {
 		hull() {
+			translate([0, 0, -base_height])
+				base(bottom_base_width, bottom_base_length, base_height);
+
 			base(bottom_base_width, bottom_base_length, BOTTOM_BASE_EXTRUSION_HEIGHT);
 
 			translate([(bottom_base_width-top_base_width)/2, top_base_translate, top_base_height_back - TOP_BASE_EXTRUSION_HEIGHT])
