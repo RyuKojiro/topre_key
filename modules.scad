@@ -154,10 +154,12 @@ module connector(top_base_height_back) {
 	union() {
 		difference() {
 			cylinder(h=top_base_height_back - CONNECTOR_HEIGHT, r = CONNECTOR_RADIUS);
-			cylinder(h=top_base_height_back - CONNECTOR_HEIGHT, r = CONNECTOR_RADIUS - CONNECTOR_THICKNESS);
 
-			translate([-CONNECTOR_MIDDLE_SPACE/2, -CONNECTOR_RADIUS, 0])
-				cube([CONNECTOR_MIDDLE_SPACE, 2 * CONNECTOR_RADIUS, top_base_height_back - CONNECTOR_HEIGHT - CONNECTOR_SUPPORT_HEIGHT]);
+			translate([0, 0, -1])
+				cylinder(h=top_base_height_back - CONNECTOR_HEIGHT + padding, r = CONNECTOR_RADIUS - CONNECTOR_THICKNESS);
+
+			translate([-CONNECTOR_MIDDLE_SPACE/2, -CONNECTOR_RADIUS, -padding])
+				cube([CONNECTOR_MIDDLE_SPACE, 2 * CONNECTOR_RADIUS, top_base_height_back - CONNECTOR_HEIGHT - CONNECTOR_SUPPORT_HEIGHT + padding]);
 		}
 	}
 }
