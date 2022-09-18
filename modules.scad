@@ -4,6 +4,7 @@ top_base_width = KEY_DIMENSIONS[1] * KEY_SIZE;
 bottom_base_length = KEY_DIMENSIONS[2];
 bottom_base_width = KEY_DIMENSIONS[3] - KEY_DIMENSIONS[1] + KEY_DIMENSIONS[1] * KEY_SIZE;
 bottom_base_angle_back = KEY_DIMENSIONS[4];
+bottom_base_height = 1.5;
 
 // To eliminate z-fighting
 padding = 0.1;
@@ -31,10 +32,10 @@ module dish_cylinder(top_base_rotated_length, rotated_cylinder_translate, cylind
 }
 
 // Basic key shape
-module key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=0) {
+module key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=0, base_inset=0) {
 	difference() {
 		hull() {
-			translate([0, 0, -base_height])
+			translate([0, 0, base_inset-base_height])
 				base(bottom_base_width, bottom_base_length, base_height);
 
 			base(bottom_base_width, bottom_base_length, BOTTOM_BASE_EXTRUSION_HEIGHT);
@@ -84,11 +85,11 @@ module key(row, symbol_number) {
 	difference() {
 		union() {
 			difference() {
-				key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius);
+				key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=bottom_base_height, base_inset=bottom_base_height);
 
 				translate([KEY_THICKNESS, KEY_THICKNESS, 0])
 				scale(key_scale)
-					key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=padding);
+					key_shape(top_base_translate, top_base_height_back, top_base_angle, top_base_rotated_length, back_cylinder_translate, rotated_cylinder_translate, cylinder_dish_radius, base_height=bottom_base_height+padding, base_inset=bottom_base_height);
 
 
 			}
