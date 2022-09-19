@@ -159,8 +159,8 @@ module connector(top_base_height_back) {
 			translate([0, 0, -1])
 				cylinder(h=top_base_height_back - CONNECTOR_HEIGHT + padding, r = CONNECTOR_RADIUS - CONNECTOR_THICKNESS);
 
-			translate([-CONNECTOR_MIDDLE_SPACE/2, -CONNECTOR_RADIUS, -padding])
-				cube([CONNECTOR_MIDDLE_SPACE, 2 * CONNECTOR_RADIUS, top_base_height_back - CONNECTOR_HEIGHT - CONNECTOR_SUPPORT_HEIGHT + padding]);
+			translate([-CONNECTOR_MIDDLE_SPACE/2, -CONNECTOR_RADIUS - padding, -padding])
+				cube([CONNECTOR_MIDDLE_SPACE, 2 * (CONNECTOR_RADIUS + padding), top_base_height_back - CONNECTOR_HEIGHT - CONNECTOR_SUPPORT_HEIGHT + padding]);
 		}
 	}
 }
