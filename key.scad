@@ -81,7 +81,10 @@ include<modules.scad>;
 keycap_rows = [0, 1, 2, 3];
 keycap_symbols = [4];
 
+/*
 for (i = [0:len(keycap_rows) - 1]) {
 	translate([i * bottom_base_width + i * SUPPORT_LENGTH, 0, 0])
 		key(keycap_rows[i], keycap_symbols[i]);
 }
+*/
+key(0, 0);
